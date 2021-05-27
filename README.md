@@ -1,2 +1,2 @@
-# Noalek-Pattisserie-iOS
+# Noalek-Patisserie-iOS
 iOS application
