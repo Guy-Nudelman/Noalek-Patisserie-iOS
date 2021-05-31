@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11A8CDCD109A227B0BA806A6 /* Pods_Noalek_Patisserie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD707499010F920586472C76 /* Pods_Noalek_Patisserie.framework */; };
+		7007A274EB3259C59E020E22 /* Pods_Noalek_PatisserieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A0054F9EDD0A0E88B572CF5 /* Pods_Noalek_PatisserieTests.framework */; };
 		7F2899DB265FDD5900921BB5 /* ProductsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2899DA265FDD5900921BB5 /* ProductsTableViewCell.swift */; };
 		7F2899DE265FE40C00921BB5 /* ProductsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2899DD265FE40C00921BB5 /* ProductsListViewController.swift */; };
 		7F2899E0265FE71300921BB5 /* NewProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2899DF265FE71300921BB5 /* NewProductViewController.swift */; };
@@ -14,6 +16,8 @@
 		7F2899EE265FEEE300921BB5 /* Product+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2899EC265FEEE300921BB5 /* Product+CoreDataClass.swift */; };
 		7F2899EF265FEEE300921BB5 /* Product+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2899ED265FEEE300921BB5 /* Product+CoreDataProperties.swift */; };
 		7F2899F12660003800921BB5 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2899F02660003800921BB5 /* Model.swift */; };
+		7F424E2A26652A7700D78937 /* ModelFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F424E2926652A7700D78937 /* ModelFirebase.swift */; };
+		7F424E2E26652F7900D78937 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F424E2D26652F7900D78937 /* GoogleService-Info.plist */; };
 		7FEEDA5E265A944300545133 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FEEDA5D265A944300545133 /* AppDelegate.swift */; };
 		7FEEDA60265A944300545133 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FEEDA5F265A944300545133 /* SceneDelegate.swift */; };
 		7FEEDA62265A944300545133 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FEEDA61265A944300545133 /* ViewController.swift */; };
@@ -22,6 +26,7 @@
 		7FEEDA6A265A944400545133 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FEEDA68265A944400545133 /* LaunchScreen.storyboard */; };
 		7FEEDA75265A944400545133 /* Noalek_PatisserieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FEEDA74265A944400545133 /* Noalek_PatisserieTests.swift */; };
 		7FEEDA80265A944400545133 /* Noalek_PatisserieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FEEDA7F265A944400545133 /* Noalek_PatisserieUITests.swift */; };
+		C5E0DD4EB4AAA2A56DC787DF /* Pods_Noalek_Patisserie_Noalek_PatisserieUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0026B4B8C95FC24156B3F95 /* Pods_Noalek_Patisserie_Noalek_PatisserieUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E75D9FB630141BDAD88D43F /* Pods-Noalek_PatisserieTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Noalek_PatisserieTests.debug.xcconfig"; path = "Target Support Files/Pods-Noalek_PatisserieTests/Pods-Noalek_PatisserieTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1A88B2AC8FDA5E24B1BBECDC /* Pods-Noalek_PatisserieTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Noalek_PatisserieTests.release.xcconfig"; path = "Target Support Files/Pods-Noalek_PatisserieTests/Pods-Noalek_PatisserieTests.release.xcconfig"; sourceTree = "<group>"; };
+		4C9B419784DBD25149445D2F /* Pods-Noalek_Patisserie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Noalek_Patisserie.release.xcconfig"; path = "Target Support Files/Pods-Noalek_Patisserie/Pods-Noalek_Patisserie.release.xcconfig"; sourceTree = "<group>"; };
+		6A0054F9EDD0A0E88B572CF5 /* Pods_Noalek_PatisserieTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Noalek_PatisserieTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F2899DA265FDD5900921BB5 /* ProductsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewCell.swift; sourceTree = "<group>"; };
 		7F2899DD265FE40C00921BB5 /* ProductsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsListViewController.swift; sourceTree = "<group>"; };
 		7F2899DF265FE71300921BB5 /* NewProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +58,8 @@
 		7F2899EC265FEEE300921BB5 /* Product+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7F2899ED265FEEE300921BB5 /* Product+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7F2899F02660003800921BB5 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		7F424E2926652A7700D78937 /* ModelFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelFirebase.swift; sourceTree = "<group>"; };
+		7F424E2D26652F7900D78937 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7FEEDA5A265A944300545133 /* Noalek_Patisserie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Noalek_Patisserie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FEEDA5D265A944300545133 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FEEDA5F265A944300545133 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +74,11 @@
 		7FEEDA7B265A944400545133 /* Noalek_PatisserieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Noalek_PatisserieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FEEDA7F265A944400545133 /* Noalek_PatisserieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Noalek_PatisserieUITests.swift; sourceTree = "<group>"; };
 		7FEEDA81265A944400545133 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0026B4B8C95FC24156B3F95 /* Pods_Noalek_Patisserie_Noalek_PatisserieUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Noalek_Patisserie_Noalek_PatisserieUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD707499010F920586472C76 /* Pods_Noalek_Patisserie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Noalek_Patisserie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE5CE4E86C96BDC3F494304C /* Pods-Noalek_Patisserie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Noalek_Patisserie.debug.xcconfig"; path = "Target Support Files/Pods-Noalek_Patisserie/Pods-Noalek_Patisserie.debug.xcconfig"; sourceTree = "<group>"; };
+		D9DED1162E9BD9956D0B0EF9 /* Pods-Noalek_Patisserie-Noalek_PatisserieUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Noalek_Patisserie-Noalek_PatisserieUITests.debug.xcconfig"; path = "Target Support Files/Pods-Noalek_Patisserie-Noalek_PatisserieUITests/Pods-Noalek_Patisserie-Noalek_PatisserieUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		DD28D350A6836B53A3603025 /* Pods-Noalek_Patisserie-Noalek_PatisserieUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Noalek_Patisserie-Noalek_PatisserieUITests.release.xcconfig"; path = "Target Support Files/Pods-Noalek_Patisserie-Noalek_PatisserieUITests/Pods-Noalek_Patisserie-Noalek_PatisserieUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11A8CDCD109A227B0BA806A6 /* Pods_Noalek_Patisserie.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7007A274EB3259C59E020E22 /* Pods_Noalek_PatisserieTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5E0DD4EB4AAA2A56DC787DF /* Pods_Noalek_Patisserie_Noalek_PatisserieUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +116,7 @@
 				7F2899ED265FEEE300921BB5 /* Product+CoreDataProperties.swift */,
 				7F2899E9265FEE0D00921BB5 /* CoreDataApp.xcdatamodeld */,
 				7F2899F02660003800921BB5 /* Model.swift */,
+				7F424E2926652A7700D78937 /* ModelFirebase.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -118,6 +138,8 @@
 				7FEEDA73265A944400545133 /* Noalek_PatisserieTests */,
 				7FEEDA7E265A944400545133 /* Noalek_PatisserieUITests */,
 				7FEEDA5B265A944300545133 /* Products */,
+				E8684DDCE61DC55802776177 /* Pods */,
+				BA777704A2DA9F2705E74523 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,6 +156,7 @@
 		7FEEDA5C265A944300545133 /* Noalek_Patisserie */ = {
 			isa = PBXGroup;
 			children = (
+				7F424E2D26652F7900D78937 /* GoogleService-Info.plist */,
 				7F2899DC265FDD6900921BB5 /* Controllers */,
 				7F2899D3265FDB6B00921BB5 /* Model */,
 				7FEEDA5D265A944300545133 /* AppDelegate.swift */,
@@ -165,6 +188,29 @@
 			path = Noalek_PatisserieUITests;
 			sourceTree = "<group>";
 		};
+		BA777704A2DA9F2705E74523 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AD707499010F920586472C76 /* Pods_Noalek_Patisserie.framework */,
+				A0026B4B8C95FC24156B3F95 /* Pods_Noalek_Patisserie_Noalek_PatisserieUITests.framework */,
+				6A0054F9EDD0A0E88B572CF5 /* Pods_Noalek_PatisserieTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E8684DDCE61DC55802776177 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BE5CE4E86C96BDC3F494304C /* Pods-Noalek_Patisserie.debug.xcconfig */,
+				4C9B419784DBD25149445D2F /* Pods-Noalek_Patisserie.release.xcconfig */,
+				D9DED1162E9BD9956D0B0EF9 /* Pods-Noalek_Patisserie-Noalek_PatisserieUITests.debug.xcconfig */,
+				DD28D350A6836B53A3603025 /* Pods-Noalek_Patisserie-Noalek_PatisserieUITests.release.xcconfig */,
+				0E75D9FB630141BDAD88D43F /* Pods-Noalek_PatisserieTests.debug.xcconfig */,
+				1A88B2AC8FDA5E24B1BBECDC /* Pods-Noalek_PatisserieTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -172,9 +218,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7FEEDA84265A944400545133 /* Build configuration list for PBXNativeTarget "Noalek_Patisserie" */;
 			buildPhases = (
+				BEBCB94387DCC06349B85309 /* [CP] Check Pods Manifest.lock */,
 				7FEEDA56265A944300545133 /* Sources */,
 				7FEEDA57265A944300545133 /* Frameworks */,
 				7FEEDA58265A944300545133 /* Resources */,
+				EE5D32806AFEBF7928E6CFAB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -189,6 +237,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7FEEDA87265A944400545133 /* Build configuration list for PBXNativeTarget "Noalek_PatisserieTests" */;
 			buildPhases = (
+				83AC83B1C9D19FE7CD1D2F1C /* [CP] Check Pods Manifest.lock */,
 				7FEEDA6C265A944400545133 /* Sources */,
 				7FEEDA6D265A944400545133 /* Frameworks */,
 				7FEEDA6E265A944400545133 /* Resources */,
@@ -207,9 +256,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7FEEDA8A265A944400545133 /* Build configuration list for PBXNativeTarget "Noalek_PatisserieUITests" */;
 			buildPhases = (
+				C0A88A1BB865AB2A036B83F6 /* [CP] Check Pods Manifest.lock */,
 				7FEEDA77265A944400545133 /* Sources */,
 				7FEEDA78265A944400545133 /* Frameworks */,
 				7FEEDA79265A944400545133 /* Resources */,
+				353B5B64E7B50E9398432D46 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -269,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FEEDA6A265A944400545133 /* LaunchScreen.storyboard in Resources */,
+				7F424E2E26652F7900D78937 /* GoogleService-Info.plist in Resources */,
 				7FEEDA67265A944400545133 /* Assets.xcassets in Resources */,
 				7FEEDA65265A944300545133 /* Main.storyboard in Resources */,
 			);
@@ -290,6 +342,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		353B5B64E7B50E9398432D46 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Noalek_Patisserie-Noalek_PatisserieUITests/Pods-Noalek_Patisserie-Noalek_PatisserieUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Noalek_Patisserie-Noalek_PatisserieUITests/Pods-Noalek_Patisserie-Noalek_PatisserieUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Noalek_Patisserie-Noalek_PatisserieUITests/Pods-Noalek_Patisserie-Noalek_PatisserieUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		83AC83B1C9D19FE7CD1D2F1C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Noalek_PatisserieTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BEBCB94387DCC06349B85309 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Noalek_Patisserie-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C0A88A1BB865AB2A036B83F6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Noalek_Patisserie-Noalek_PatisserieUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE5D32806AFEBF7928E6CFAB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Noalek_Patisserie/Pods-Noalek_Patisserie-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Noalek_Patisserie/Pods-Noalek_Patisserie-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Noalek_Patisserie/Pods-Noalek_Patisserie-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7FEEDA56265A944300545133 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -302,6 +457,7 @@
 				7FEEDA5E265A944300545133 /* AppDelegate.swift in Sources */,
 				7F2899F12660003800921BB5 /* Model.swift in Sources */,
 				7F2899EB265FEE0D00921BB5 /* CoreDataApp.xcdatamodeld in Sources */,
+				7F424E2A26652A7700D78937 /* ModelFirebase.swift in Sources */,
 				7F2899E0265FE71300921BB5 /* NewProductViewController.swift in Sources */,
 				7FEEDA60265A944300545133 /* SceneDelegate.swift in Sources */,
 				7F2899EF265FEEE300921BB5 /* Product+CoreDataProperties.swift in Sources */,
@@ -477,6 +633,7 @@
 		};
 		7FEEDA85265A944400545133 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE5CE4E86C96BDC3F494304C /* Pods-Noalek_Patisserie.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -495,6 +652,7 @@
 		};
 		7FEEDA86265A944400545133 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C9B419784DBD25149445D2F /* Pods-Noalek_Patisserie.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -513,6 +671,7 @@
 		};
 		7FEEDA88265A944400545133 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E75D9FB630141BDAD88D43F /* Pods-Noalek_PatisserieTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -534,6 +693,7 @@
 		};
 		7FEEDA89265A944400545133 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A88B2AC8FDA5E24B1BBECDC /* Pods-Noalek_PatisserieTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -555,6 +715,7 @@
 		};
 		7FEEDA8B265A944400545133 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9DED1162E9BD9956D0B0EF9 /* Pods-Noalek_Patisserie-Noalek_PatisserieUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -574,6 +735,7 @@
 		};
 		7FEEDA8C265A944400545133 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD28D350A6836B53A3603025 /* Pods-Noalek_Patisserie-Noalek_PatisserieUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

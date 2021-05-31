@@ -118,6 +118,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Eiy-Cq-Rlu"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="WBa-VS-TcS"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -202,6 +206,12 @@
                                     <action selector="save:" destination="jf2-Na-7cr" eventType="touchUpInside" id="BGN-ds-cLL"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wdf-yz-arZ">
+                                <rect key="frame" x="69" y="517" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yq2-4h-NMp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -209,6 +219,7 @@
                     <tabBarItem key="tabBarItem" title="Item" id="MrI-dA-eNh"/>
                     <navigationItem key="navigationItem" id="Eis-Ph-PaZ"/>
                     <connections>
+                        <outlet property="descriptionText" destination="Wdf-yz-arZ" id="QeX-2C-IYn"/>
                         <outlet property="imageView" destination="ghX-OI-Y9V" id="SI9-ne-M95"/>
                         <outlet property="nameText" destination="6fc-u0-dsN" id="YSq-OK-PTF"/>
                         <outlet property="priceText" destination="WN8-F1-81H" id="mxT-7w-euU"/>

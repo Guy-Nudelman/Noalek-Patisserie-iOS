@@ -12,57 +12,61 @@ import CoreData
 class Model{
     static let instance = Model()
     private init(){}
+    let modelFirebase = Modelfirebase()
         
     func getAll(callback:@escaping ([Product])->Void){
-       let context=(UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-       
-       let request = Product.fetchRequest() as NSFetchRequest<Product>
-       
-       DispatchQueue.global().async {
-           var data = [Product]()
-           do{
-               data = try context.fetch(request)
-           }catch{
-               
-           }
-           DispatchQueue.main.async {
-               callback(data)
-           }
-       }
+        modelFirebase.getAllProducts(callback: callback)
+//       let context=(UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//
+//       let request = Product.fetchRequest() as NSFetchRequest<Product>
+//
+//       DispatchQueue.global().async {
+//           var data = [Product]()
+//           do{
+//               data = try context.fetch(request)
+//           }catch{
+//
+//           }
+//           DispatchQueue.main.async {
+//               callback(data)
+//           }
+//       }
    }
     func add(product: Product){
-       let context=(UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-       do{
-           try context.save()
-       }catch{
-           
-       }
+        modelFirebase.add(product: product)
+//       let context=(UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//       do{
+//           try context.save()
+//       }catch{
+//
+//       }
        
    }
    
    func delete(product: Product){
-       let context=(UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-       context.delete(product)
-       do{
-           try context.save()
-       }catch{
-           
-       }
+    modelFirebase.delete(product: product)
+//       let context=(UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//       context.delete(product)
+//       do{
+//           try context.save()
+//       }catch{
+//
+//       }
        
    }
    static func getProduct(byId:String)->Product?{
-       let context=(UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-       
-       let request = Product.fetchRequest() as NSFetchRequest<Product>
-       request.predicate = NSPredicate(format: "id == \(byId)")
-       do{
-           let products = try context.fetch(request)
-           if(products.count>0){
-               return products[0]
-           }
-       }catch{
-           
-       }
+//       let context=(UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//
+//       let request = Product.fetchRequest() as NSFetchRequest<Product>
+//       request.predicate = NSPredicate(format: "id == \(byId)")
+//       do{
+//           let products = try context.fetch(request)
+//           if(products.count>0){
+//               return products[0]
+//           }
+//       }catch{
+//
+//       }
        return nil
    }
     

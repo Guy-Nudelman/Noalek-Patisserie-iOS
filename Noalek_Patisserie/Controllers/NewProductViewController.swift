@@ -20,10 +20,11 @@ class NewProductViewController: UIViewController {
     @IBAction func isGlutenFreeSwitch(_ sender: Any) {
     }
     
+    @IBOutlet weak var descriptionText: UITextField!
+    
     @IBAction func save(_ sender: Any) {
-        let product = Product.create(id: "1", name: nameText.text!, imageUrl: "", price: Double(priceText.text!) ?? 0, isDairy: false, isGlutenFree: true)
-        //Model.instance.add(product: product)
-        //Model.instance.getAll(callback: (product:(Product)->Void))
+        let product = Product.create(id: "1", name: nameText.text!, imageUrl: "", price: Double(priceText.text!) ?? 0, isDairy: false, isGlutenFree: true, desc: descriptionText.text!)
+        Model.instance.add(product: product)
         navigationController?.popViewController(animated: true)
     }
     

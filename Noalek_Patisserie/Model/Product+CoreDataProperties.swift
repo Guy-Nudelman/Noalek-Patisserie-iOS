@@ -23,6 +23,8 @@ extension Product {
     @NSManaged public var isDairy: Bool
     @NSManaged public var isGlutenFree: Bool
     @NSManaged public var likes: Int16
+    @NSManaged public var desc: String?
+
 
 }
 

@@ -8,6 +8,7 @@
 import UIKit
 
 class ProductsListViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+    //AssestMana
     var data = [Product]()
     @IBOutlet weak var productsTableview: UITableView!
     
@@ -26,10 +27,15 @@ class ProductsListViewController: UIViewController,UITableViewDataSource,UITable
        // cell.imageView = product.imageUrl
 //        cell.productImage = product
         if(product.isDairy == false){
-            cell.isDairyIcon.isHidden = true
+            cell.isDairyIcon.image = UIImage(named: "unmilk")
+        }
+        else{
+            cell.isDairyIcon.image = UIImage(named: "milk")
         }
         if(product.isGlutenFree == true){
-            cell.isGlutenFreeIcon.isHidden = false
+            cell.isGlutenFreeIcon.image = UIImage(named: "glutenfree")
+        }else{
+            cell.isGlutenFreeIcon.image = UIImage(named: "gluten")
         }
         cell.likesNumber.text = String(product.likes)
         return cell

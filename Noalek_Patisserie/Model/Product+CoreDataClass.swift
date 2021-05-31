@@ -11,10 +11,10 @@ import UIKit
 
 @objc(Product)
 public class Product: NSManagedObject {
-    
 
+ 
     
-    static func create(id:String, name:String, imageUrl:String, price:Double, isDairy:Bool, isGlutenFree:Bool)->Product{
+    static func create(id:String, name:String, imageUrl:String, price:Double, isDairy:Bool, isGlutenFree:Bool, desc:String)->Product{
         let context=(UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let product = Product(context: context)
         product.id = id
@@ -24,6 +24,7 @@ public class Product: NSManagedObject {
         product.isDairy = isDairy
         product.isGlutenFree = isGlutenFree
         product.likes = 0
+        product.desc = desc
         return product
         }
     
@@ -37,6 +38,7 @@ public class Product: NSManagedObject {
         product.isDairy = json["isDairy"] as? Bool ?? true
         product.isGlutenFree = json["isGlutenFree"] as? Bool ?? false
         product.likes=0
+        product.desc = json["desc"] as? String
         return product
 
     }
@@ -55,6 +57,7 @@ public class Product: NSManagedObject {
         json["isDairy"] = isDairy
         json["isGlutenFree"] = isGlutenFree
         json["likes"] = likes
+        json["desc"] = desc
         return json
         
     }
