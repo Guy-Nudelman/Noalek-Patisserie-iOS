@@ -25,6 +25,7 @@ extension Product {
     @NSManaged public var likes: Int16
     @NSManaged public var desc: String?
     @NSManaged public var lastUpdated : Int64
+    @NSManaged public var isRemoved: Bool
 
 
 }

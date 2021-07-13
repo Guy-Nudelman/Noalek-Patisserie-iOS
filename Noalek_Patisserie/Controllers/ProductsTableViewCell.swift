@@ -7,9 +7,14 @@
 
 import UIKit
 
-class ProductsTableViewCell: UITableViewCell {
 
-    
+
+
+class ProductsTableViewCell: UITableViewCell{
+
+
+
+
     @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var priceLabel: UILabel!
@@ -22,10 +27,12 @@ class ProductsTableViewCell: UITableViewCell {
     @IBOutlet weak var likesNumber: UILabel!
     
     @IBAction func infoBtn(_ sender: Any) {
+        
     }
-    
+ 
     @IBAction func addToCartBtn(_ sender: Any) {
     }
+    
     @IBOutlet weak var isDairyIcon: UIImageView!
     
     @IBOutlet weak var isGlutenFreeIcon: UIImageView!
@@ -41,5 +48,9 @@ class ProductsTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+
+
 
 }
+

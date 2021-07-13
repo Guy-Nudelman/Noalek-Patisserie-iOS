@@ -1,5 +1,4 @@
 # Uncomment the next line to define a global platform for your project
-#source 'https://github.com/CocoaPods/Specs.git'
 # platform :ios, '9.0'
 
 target 'Noalek_Patisserie' do
@@ -14,7 +13,7 @@ target 'Noalek_Patisserie' do
   pod 'Firebase/Core' # added this line
   pod 'FirebaseUI'
   pod 'SDWebImageSwiftUI'
-# pod 'Kingfisher','~>6.0'
+ pod 'Kingfisher','~>6.0'
 
 	
 

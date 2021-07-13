@@ -6,6 +6,7 @@
         <attribute name="imageUrl" optional="YES" attributeType="String"/>
         <attribute name="isDairy" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isGlutenFree" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isRemoved" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="lastUpdated" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="likes" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -17,6 +18,6 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Product" positionX="-45" positionY="0" width="128" height="14"/>
+        <element name="Product" positionX="-45" positionY="0" width="128" height="179"/>
     </elements>
 </model>

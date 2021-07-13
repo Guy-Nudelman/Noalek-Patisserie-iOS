@@ -28,6 +28,7 @@ public class Product: NSManagedObject {
         product.likes = 0
         product.desc = desc
         product.lastUpdated = lastUpdated
+        product.isRemoved = false
         return product
         }
     
@@ -46,6 +47,7 @@ public class Product: NSManagedObject {
         if let lup = json["lastUpdated"] as? Timestamp{
             product.lastUpdated = lup.seconds
         }
+        product.isRemoved = json["isRemoved"] as? Bool ?? false
         return product
     }
     
@@ -69,9 +71,10 @@ public class Product: NSManagedObject {
         json["likes"] = likes
         json["desc"] = desc
         json["lastUpdated"] = FieldValue.serverTimestamp()
+        json["isRemoved"] = isRemoved
         return json
-        
     }
+    
     static func saveLastUpdate(time:Int64){
             UserDefaults.standard.set(time, forKey: "lastUpdate")
         }
@@ -90,6 +93,7 @@ extension Product{
         let context=(UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         let request = Product.fetchRequest() as NSFetchRequest<Product>
+        request.predicate = NSPredicate(format: "isRemoved != true")
         
         DispatchQueue.global().async {
             var data = [Product]()
@@ -105,7 +109,7 @@ extension Product{
     }
     func save(){
         let context=(UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        context.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         do{
             try context.save()
             
@@ -131,8 +135,6 @@ extension Product{
         
     }
     
-    
-    
     static func getProduct(byId:String)->Product?{
         let context=(UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
@@ -147,6 +149,21 @@ extension Product{
             
         }
         return nil
+    }
+    
+    static func removeDeleted(){
+        let context=(UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        let request = Product.fetchRequest() as NSFetchRequest<NSFetchRequestResult>
+        request.predicate = NSPredicate(format: "isRemoved == true")
+        
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
+        do{
+            try context.execute(deleteRequest)
+        }catch let error as NSError{
+            //TODO: handle error
+        }
+        
     }
     
 }

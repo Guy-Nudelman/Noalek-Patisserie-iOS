@@ -42,30 +42,63 @@ class Modelfirebase{
                 }else{
                     
                     print("Document successfully written! \(ref!.documentID)")
-                    db.collection("products").document(ref?.documentID ?? "1").setData(["id":ref?.documentID], merge : true)
-                    
+//                    db.collection("products").document(ref?.documentID ?? "1").setData(["id":ref?.documentID], merge : true)
+                    db.collection("products").document(ref!.documentID).setData(["id":ref!.documentID], merge : true)
                     product.id=ref?.documentID
                     
                 }
             callback()
             }
         }
+    
+    func update(product: Product, callback:@escaping ()->Void){
+        let db = Firestore.firestore()
+        db.collection("products").document(product.id!).setData(product.toJson()){
+            err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            }else {
+                print("Document successfully written")
+            }
+            callback()
+        }
+    }
         
         func delete(product:Product){
             let db = Firestore.firestore()
-            db.collection("product").document(product.id!).delete() { err in
+            db.collection("products").document(product.id!).updateData([
+                "isRemoved": true, "lastUpdated": FieldValue.serverTimestamp()
+            ]) { err in
                 if let err = err {
-                    print("Error removing document: \(err)")
+                    print("Error updating document: \(err)")
                 } else {
-                    print("Document successfully removed!")
+                    print("Document successfully updated")
                 }
             }
+//            db.collection("products").document(product.id!).delete() { err in
+//                print(product.id! + "deleted")
+//                if let err = err {
+//                    print("Error removing document: \(err)")
+//                } else {
+//                    print("Document successfully removed!")
+//                }
+//            }
 
         }
         
-        func getProduct(byId:String)->Product?{
+        func getProduct(byId:String, callback:@escaping (Product)->Void){
+            let db = Firestore.firestore()
+            let docRef = db.collection("products").document(byId)
             
-            return nil
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                    //print("****Document data: \(document.data()!)")
+                    callback(Product.create(json: document.data()!)!)
+                } else {
+                    print("Document does not exist")
+                }
+            }
         }
     
     static func saveImage(image:UIImage,name:String, callback:@escaping (String)->Void){

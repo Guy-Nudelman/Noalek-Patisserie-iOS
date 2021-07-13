@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7007A274EB3259C59E020E22 /* Pods_Noalek_PatisserieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A0054F9EDD0A0E88B572CF5 /* Pods_Noalek_PatisserieTests.framework */; };
+		7F1680B92694B084001F784E /* ProductInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1680B82694B084001F784E /* ProductInfoViewController.swift */; };
 		7F2899DB265FDD5900921BB5 /* ProductsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2899DA265FDD5900921BB5 /* ProductsTableViewCell.swift */; };
 		7F2899DE265FE40C00921BB5 /* ProductsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2899DD265FE40C00921BB5 /* ProductsListViewController.swift */; };
 		7F2899E0265FE71300921BB5 /* NewProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2899DF265FE71300921BB5 /* NewProductViewController.swift */; };
@@ -52,6 +53,7 @@
 		1A88B2AC8FDA5E24B1BBECDC /* Pods-Noalek_PatisserieTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Noalek_PatisserieTests.release.xcconfig"; path = "Target Support Files/Pods-Noalek_PatisserieTests/Pods-Noalek_PatisserieTests.release.xcconfig"; sourceTree = "<group>"; };
 		4C9B419784DBD25149445D2F /* Pods-Noalek_Patisserie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Noalek_Patisserie.release.xcconfig"; path = "Target Support Files/Pods-Noalek_Patisserie/Pods-Noalek_Patisserie.release.xcconfig"; sourceTree = "<group>"; };
 		6A0054F9EDD0A0E88B572CF5 /* Pods_Noalek_PatisserieTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Noalek_PatisserieTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F1680B82694B084001F784E /* ProductInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoViewController.swift; sourceTree = "<group>"; };
 		7F2899DA265FDD5900921BB5 /* ProductsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewCell.swift; sourceTree = "<group>"; };
 		7F2899DD265FE40C00921BB5 /* ProductsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsListViewController.swift; sourceTree = "<group>"; };
 		7F2899DF265FE71300921BB5 /* NewProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				7F2899DA265FDD5900921BB5 /* ProductsTableViewCell.swift */,
 				7F2899DD265FE40C00921BB5 /* ProductsListViewController.swift */,
 				7F2899DF265FE71300921BB5 /* NewProductViewController.swift */,
+				7F1680B82694B084001F784E /* ProductInfoViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				7F2899EE265FEEE300921BB5 /* Product+CoreDataClass.swift in Sources */,
 				7FEEDA5E265A944300545133 /* AppDelegate.swift in Sources */,
 				7F2899F12660003800921BB5 /* Model.swift in Sources */,
+				7F1680B92694B084001F784E /* ProductInfoViewController.swift in Sources */,
 				7F2899EB265FEE0D00921BB5 /* CoreDataApp.xcdatamodeld in Sources */,
 				7F424E2A26652A7700D78937 /* ModelFirebase.swift in Sources */,
 				7F2899E0265FE71300921BB5 /* NewProductViewController.swift in Sources */,
