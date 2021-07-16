@@ -16,7 +16,7 @@ public class Product: NSManagedObject {
 
  
     
-    static func create(id:String, name:String, imageUrl:String, price:Double, isDairy:Bool, isGlutenFree:Bool, desc:String,lastUpdated:Int64 = 0)->Product{
+    static func create(id:String, name:String, imageUrl:String, price:Double, isDairy:Bool, isGlutenFree:Bool, desc:String,lastUpdated:Int64 = 0, likes: Int16 = 0)->Product{
         let context=(UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let product = Product(context: context)
         product.id = id
@@ -25,7 +25,7 @@ public class Product: NSManagedObject {
         product.price = price
         product.isDairy = isDairy
         product.isGlutenFree = isGlutenFree
-        product.likes = 0
+        product.likes = likes
         product.desc = desc
         product.lastUpdated = lastUpdated
         product.isRemoved = false
@@ -41,7 +41,7 @@ public class Product: NSManagedObject {
         product.price = json["price"] as? Double ?? 0
         product.isDairy = json["isDairy"] as? Bool ?? true
         product.isGlutenFree = json["isGlutenFree"] as? Bool ?? false
-        product.likes=0
+        product.likes = json["likes"] as? Int16 ?? 0
         product.desc = json["desc"] as? String
         product.lastUpdated = 0
         if let lup = json["lastUpdated"] as? Timestamp{
@@ -52,7 +52,7 @@ public class Product: NSManagedObject {
     }
     
     static func create(product: Product) ->Product{
-        return create(id: product.id!, name: product.name!, imageUrl: product.imageUrl!, price: product.price, isDairy: product.isDairy, isGlutenFree: product.isGlutenFree, desc: product.desc!, lastUpdated: product.lastUpdated)
+        return create(id: product.id!, name: product.name!, imageUrl: product.imageUrl!, price: product.price, isDairy: product.isDairy, isGlutenFree: product.isGlutenFree, desc: product.desc!, lastUpdated: product.lastUpdated, likes: product.likes)
     }
     
     func toJson() -> [String:Any] {

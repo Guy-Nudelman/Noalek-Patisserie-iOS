@@ -37,6 +37,7 @@ class Model{
     public let notificationProductList = NotificationGeneral(name: "notificationProductList")
     public let notificationLogin = NotificationGeneral(name: "notificationLogin")
     public let notificationProductInfo = NotificationGeneral(name: "notificationProductInfo")
+    public let notificationAdmin = NotificationGeneral(name: "notificationAdmin")
         
     let modelFirebase = Modelfirebase()
     
@@ -53,7 +54,7 @@ class Model{
             var lastUpdate:Int64 = 0
             
             for product in products{
-                print("product \(product.id!)")
+                //print("product \(product.id!)")
                 if (lastUpdate < product.lastUpdated){
                     lastUpdate = product.lastUpdated
                 }
@@ -71,7 +72,7 @@ class Model{
 //            }
 
 
-            //read the complete students list from the local DB
+            //read the complete products list from the local DB
             Product.getAll(callback: callback)
 
         }
@@ -86,7 +87,17 @@ class Model{
             callback()
         }
     }
-  
+    
+    func addLike(productId : String , uid: String , callback:@escaping ()->Void){
+        modelFirebase.addLike(productId: productId , uid:uid, callback: callback)
+                //self.notificationProductList.post()
+                //callback()
+    }
+
+    func deleteLike (productId : String , uid: String , callback:@escaping ()->Void){
+        modelFirebase.deleteLike(productId: productId , uid:uid, callback: callback)
+    }
+    
 
     func update(product:Product,callback:@escaping ()->Void){
         //modelFirebase.update(product: product, callback: callback)
@@ -94,6 +105,14 @@ class Model{
         modelFirebase.update(product: product){
             self.notificationProductInfo.post()
             callback()
+        }
+    }
+    
+    func updateProductLike(productId: String, addingLike: Bool,callback:@escaping (Int)->Void){
+        modelFirebase.updateProductLike(productId: productId, addingLike: addingLike){ likes in
+            //self.notificationProductList.post()
+            //self.notificationProductInfo.post()
+            callback(likes)
         }
     }
 
@@ -116,6 +135,24 @@ class Model{
     func saveImage(image:UIImage,name:String, callback:@escaping (String)->Void){
         Modelfirebase.saveImage(image: image,name: name, callback: callback)
     }
+    
+    func getRole(userId : String, callback: @escaping (String)->Void){
+        modelFirebase.getRole(byId: userId, callback: callback)
+    }
+    func getName(userId : String, callback: @escaping (String)->Void){
+        modelFirebase.getName(byId: userId, callback: callback)
+    }
+    
+    func isLiked(productId: String, uid:String, callback:@escaping (Bool)->Void){
+        modelFirebase.isLiked(productId: productId, uid: uid){ isLiked in
+            print("isLiked === " + String(isLiked))
+            callback(isLiked)
+        }
+        
+        
+        
+    }
+    
 }
 
 //class Model{

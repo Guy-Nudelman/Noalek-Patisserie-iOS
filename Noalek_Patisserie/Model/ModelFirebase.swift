@@ -51,6 +51,40 @@ class Modelfirebase{
             }
         }
     
+    func addLike(productId: String, uid:String , callback:@escaping ()->Void){
+        let db = Firestore.firestore()
+        db.collection("likes").addDocument(data:["ProductId":productId, "UserId":uid]){ error in
+            if error != nil{
+                print("Error writing document: \(error)")
+            }else{
+                print("Document successfully written")
+            }
+        callback()
+        }
+
+    }
+    
+    func deleteLike(productId: String, uid:String , callback:@escaping ()->Void){
+        let db = Firestore.firestore()
+        let docRef = db.collection("likes").whereField("UserId", isEqualTo: uid).whereField("ProductId", isEqualTo: productId)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error deleting document: \(err)")
+                }else{
+                    for document in querySnapshot!.documents {
+                        db.collection("likes").document(document.documentID).delete(){ err in
+                            if let err = err {
+                                print("Error deleting document: \(err)")
+                            }else{
+                                print("like deleted successfully")
+                            }
+                        }
+                   }
+                }
+                callback()
+        }
+    }
+    
     func update(product: Product, callback:@escaping ()->Void){
         let db = Firestore.firestore()
         db.collection("products").document(product.id!).setData(product.toJson()){
@@ -62,6 +96,39 @@ class Modelfirebase{
             }
             callback()
         }
+    }
+    
+    func updateProductLike(productId: String, addingLike: Bool, callback: @escaping (Int)->Void){
+        
+        let db = Firestore.firestore()
+        let docRef = db.collection("products").document(productId)
+        docRef.getDocument{(document,error) in
+            if let document = document , document.exists {
+                //let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                //let dataDescription = document.data()
+                print("likes*************")
+                var num = document.data()!["likes"]
+                if addingLike == true{
+                    num = num as! Int + 1
+                }else{
+                    num = num as! Int - 1
+                }
+                
+                docRef.updateData([
+                    "likes": num as! Int, "lastUpdated": FieldValue.serverTimestamp()
+                ]) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        print("likes Document successfully updated")
+                    }
+                }
+                callback(num as! Int)
+            }
+            
+            
+        }
+
     }
         
         func delete(product:Product){
@@ -101,6 +168,39 @@ class Modelfirebase{
             }
         }
     
+    func getRole(byId: String, callback: @escaping (String)->Void){
+        let db = Firestore.firestore()
+        let docRef = db.collection("users").document(byId)
+        docRef.getDocument{(document,error) in
+            if let document = document , document.exists {
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                //let dataDescription = document.data()
+                print("***********")
+                callback(document.data()!["role"] as! String)
+                //callback(dataDescription?["role"] ?? "")
+            }
+            
+        }
+        //callback()
+    }
+    
+    func getName(byId: String, callback: @escaping (String)->Void){
+        let db = Firestore.firestore()
+        let docRef = db.collection("users").document(byId)
+        docRef.getDocument{(document,error) in
+            if let document = document , document.exists {
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                //let dataDescription = document.data()
+                print("***********")
+                callback(document.data()!["FirstName"] as! String)
+                //callback(dataDescription?["role"] ?? "")
+            }
+            
+        }
+        //callback()
+    }
+    
+    
     static func saveImage(image:UIImage,name:String, callback:@escaping (String)->Void){
      let storageRef = Storage.storage().reference(forURL:
      "gs://noalek-patisserie-149d4.appspot.com/Media/Images/Products")
@@ -119,5 +219,30 @@ class Modelfirebase{
      }
      }
      }
+    
+    func isLiked(productId: String, uid:String, callback:@escaping (Bool)->Void){
+        let db = Firestore.firestore()
+        let docRef = db.collection("likes").whereField("UserId", isEqualTo: uid).whereField("ProductId", isEqualTo: productId)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                    callback(false)
+                } else {
+                    print(String(querySnapshot!.documents.count))
+                    if querySnapshot!.documents.count > 0 {
+                        callback(true)
+                    }else{
+                        callback(false)
+                    }
+//                    for document in querySnapshot!.documents {
+//                        print("\(document.documentID) => \(document.data())")
+//                    }
+                }
+                
+        }
+        
+        
+        
+    }
     
 }

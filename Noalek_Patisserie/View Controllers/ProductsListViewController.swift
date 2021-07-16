@@ -26,8 +26,33 @@ class ProductsListViewController: UIViewController,UITableViewDataSource,UITable
     
     @IBAction func addProductBtn(_ sender: Any) {
     }
+    @IBOutlet weak var addProductBtnOutlet: UIBarButtonItem!
     
     @IBOutlet weak var deleteButton: UIBarButtonItem!
+    
+    
+    @IBAction func SignOut(_ sender: Any) {
+        
+        do{
+            try Auth.auth().signOut()
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let authViewController = storyboard.instantiateViewController(identifier: "AuthViewController") as! AuthViewController
+            if let win = UIApplication.shared.windows.filter{$0.isKeyWindow}.first{win.rootViewController = authViewController}
+            
+//            if let storyboard = self.storyboard{
+//                let vc = storyboard.instantiateViewController(identifier: "") as! UIViewController
+//                self.present(vc, animated: true, completion: nil)
+//            }
+            //let navController = UINavigationController(rootViewController: RegisterViewController())
+            //self.present(navController, animated: true, completion: nil)
+        }catch let signOutError as NSError {
+            print("Error in logging out : %@",signOutError)
+        }
+        
+    }
+    
+    
     
     var editingFlag = false
     
@@ -51,8 +76,13 @@ class ProductsListViewController: UIViewController,UITableViewDataSource,UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = productsTableview.dequeueReusableCell(withIdentifier: "myProductRow", for: indexPath) as! ProductsTableViewCell
         let product = data[indexPath.row]
+//        if(cell.isLikedAlread()){
+//            
+//        }
+        
+        cell.id = product.id!
         cell.nameLabel.text = product.name
-        cell.priceLabel.text = String(product.price)
+        cell.priceLabel.text = String(product.price) + " $"
         if(product.isDairy == false){
             cell.isDairyIcon.image = UIImage(named: "unmilk")
         }
@@ -65,7 +95,9 @@ class ProductsListViewController: UIViewController,UITableViewDataSource,UITable
             cell.isGlutenFreeIcon.image = UIImage(named: "gluten")
         }
         cell.likesNumber.text = String(product.likes)
-        
+        print("likes ------- " + String(product.likes))
+        cell.isLikedAlready()
+
         let urlProduct = URL(string : product.imageUrl!)
         //let storage = Storage.storage()
         //let storageRef = storage.reference(withPath: "Media/Images/Products" + product.name!)
@@ -78,6 +110,7 @@ class ProductsListViewController: UIViewController,UITableViewDataSource,UITable
         cell.productImage.kf.setImage(with: urlProduct, placeholder: UIImage(named: "product"), options: [ .transition(.fade(1)),.cacheOriginalImage]){ result in
         }
         //cell.item = data[indexPath.row]
+        
         
 //
 //        let getDataTask = URLSession.shared.dataTask(with: urlProduct!, completionHandler: {data,_,error in
@@ -97,6 +130,7 @@ class ProductsListViewController: UIViewController,UITableViewDataSource,UITable
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.title = "Noalek Menu"
         reloadData()
 //        Model.instance.getAllProducts{
 //            products in
@@ -112,6 +146,40 @@ class ProductsListViewController: UIViewController,UITableViewDataSource,UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loadUserView()
+        Validation.isAdmin(){ isAdminFlag in
+            if isAdminFlag == true{
+                self.loadAdminView()
+            }
+        }
+//        let user = Auth.auth().currentUser
+//        if let user = user {
+//          // The user's ID, unique to the Firebase project.
+//          // Do NOT use this value to authenticate with your backend server,
+//          // if you have one. Use getTokenWithCompletion:completion: instead.
+//          let uid = user.uid
+//          let email = user.email
+//            Model.instance.getName(userId : uid) { name in
+//
+//            }
+//            Model.instance.getRole(userId: uid) { role in
+//                if role == "admin"{
+//                    self.loadAdminView()
+//                }
+////                else{
+////                    self.loadUserView()
+////                }
+//            }
+//
+////            if Model.getRole(userId: uid) == "admin"{
+////                self.addProductBtnOutlet.isEnabled = true
+////            }else{
+////                self.addProductBtnOutlet.isEnabled = false
+////            }
+//          // ...
+//        }
+
+        
         productsTableview.addSubview(refreshControl)
         
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -120,6 +188,8 @@ class ProductsListViewController: UIViewController,UITableViewDataSource,UITable
             self.reloadData()
         }
         // Do any additional setup after loading the view.
+        
+        
     }
     
     @objc func refresh(_ sender: AnyObject){
@@ -157,6 +227,8 @@ class ProductsListViewController: UIViewController,UITableViewDataSource,UITable
         }
     }
     
+    
+    
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        self.performSegue(withIdentifier: "infoSegue", sender: (productsTableview.dequeueReusableCell(withIdentifier: "myProductRow", for: indexPath) as! ProductsTableViewCell).infoBtn(_:))
 //    }
@@ -173,6 +245,21 @@ class ProductsListViewController: UIViewController,UITableViewDataSource,UITable
             }
         }
     }
+    
+    func loadAdminView(){
+        self.addProductBtnOutlet.isEnabled = true
+        self.addProductBtnOutlet.tintColor = .link
+        self.trashIcon.isEnabled = true
+        self.trashIcon.tintColor = .link
+    }
+    
+    func loadUserView(){
+        self.addProductBtnOutlet.isEnabled = false
+        self.addProductBtnOutlet.tintColor = UIColor.clear
+        self.trashIcon.isEnabled = false
+        self.trashIcon.tintColor = UIColor.clear
+    }
+    
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        let dest = segue.destination as! ProductInfoViewController

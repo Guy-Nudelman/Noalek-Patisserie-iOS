@@ -8,11 +8,13 @@
 import UIKit
 import Kingfisher
 import FirebaseStorage
+import Firebase
 
 class NewProductViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate{
 
     var id: String = ""
     var imageUrlToUpdate = ""
+    var likes: Int16 = 0
     var refreshControl = UIRefreshControl()
 
     @IBOutlet weak var titleText: UILabel!
@@ -121,12 +123,13 @@ class NewProductViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func saveProduct(url:String){
-        if self.id != "" {
-            let product = Product.create(id: self.id, name: nameText.text!, imageUrl: url, price: Double(priceText.text!) ?? 0, isDairy: isDairyFlag, isGlutenFree: isGlutenFreeFlag, desc: descriptionText.text!)
+       
+        if self.id != "" {  //edit product
+            let product = Product.create(id: self.id, name: nameText.text!, imageUrl: url, price: Double(priceText.text!) ?? 0, isDairy: isDairyFlag, isGlutenFree: isGlutenFreeFlag, desc: descriptionText.text!, likes: self.likes)
             Model.instance.update(product: product){ () in
                 self.navigationController?.popViewController(animated: true)
             }
-        }else{
+        }else{ //new product
             let product = Product.create(id: "1", name: nameText.text!, imageUrl: url, price: Double(priceText.text!) ?? 0, isDairy: isDairyFlag, isGlutenFree: isGlutenFreeFlag, desc: descriptionText.text!)
             Model.instance.add(product: product){ () in
                 self.navigationController?.popViewController(animated: true)
@@ -138,6 +141,10 @@ class NewProductViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewDidLoad()
         self.spinner.isHidden = true
         reloadData()
+
+        
+        
+        
 //        if self.id != ""{
 //            titleText.text = "Update Product"
 //            Model.instance.getProduct(byId: id){ product in
@@ -209,6 +216,8 @@ class NewProductViewController: UIViewController, UIImagePickerControllerDelegat
                 self.descriptionText.text = product.desc
                 self.imageUrlToUpdate = product.imageUrl!
                 let urlProduct = URL(string : self.imageUrlToUpdate)
+                
+                self.likes = product.likes
 
                 //let storage = Storage.storage()
                 //let storageRef = storage.reference(withPath: "Media/Images/Products" + product.name!)
@@ -226,6 +235,19 @@ class NewProductViewController: UIViewController, UIImagePickerControllerDelegat
         // Do any additional setup after loading the view.
         }
     }
+    
+    
+//    func validateFields() -> String?{
+//        var error:String? = nil
+//        //Check that all fields are filled
+//        if nameText.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+//            priceText.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+//            description.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+//            passwordText.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
+//                error = "Please fill all fields"
+//            }
+//    }
+    
     /*
     // MARK: - Navigation
 
