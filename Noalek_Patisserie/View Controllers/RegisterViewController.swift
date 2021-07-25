@@ -7,7 +7,6 @@
 
 import UIKit
 import Foundation
-import Firebase
 
 class RegisterViewController: UIViewController {
 
@@ -15,98 +14,73 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var lastNameText: UITextField!
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
+    
     @IBOutlet weak var errorLabel: UILabel!
-
     @IBOutlet weak var firstNameErrorLabel: UILabel!
     @IBOutlet weak var lastNameErrorLabel: UILabel!
     @IBOutlet weak var emailErrorLabel: UILabel!
     @IBOutlet weak var passwordErrorLabel: UILabel!
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var submitIcon: UIButton!
+    
+    
+    @IBAction func onScreenTap(_ sender: Any) {
+        self.view.endEditing(true)
+    }
+    
     @IBAction func submitBtn(_ sender: Any) {
-        
         hideAllErrors()
+        self.spinner.isHidden = false
+        self.spinner.startAnimating()
         
-    //Validate the firlds
+        //Validate the fields
         let error = validateFields()
         
-        if error != nil {
-            //Error Found
+        if error != nil { //Error Found
             showError(message: error!)
-        }else {
-            //Create cleaned version of the data
+        }else { //valid input
+            //Create clean version of the data
             let firstName = firstNameText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let lastName = lastNameText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let email = emailText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = passwordText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
 
-            
-            
-            //Create User
-            Auth.auth().createUser(withEmail: email, password:password){(result,error) in
-                //Check for Db error
-                if error != nil {
-                    //self.showError(message: "Error Creating User")
-                    print(error!.localizedDescription)
+            Model.instance.createUser(email: email, password:password){(result,error) in
+                if error != nil { //error creating user
                     self.showError(message: error!.localizedDescription)
-                }else {
-                    let db = Firestore.firestore()
-//                    db.collection("users").addDocument(data: ["FirstName":firstName, "LastName":lastName, "role": "user" , "uid" : result!.user.uid]) {
-//                        (error) in
-//                        if error != nil{
-//                            self.showError(message: "Error saving user data")
-//                        }
-//                    }
-                    
-                    db.collection("users").document(result!.user.uid).setData(["FirstName":firstName, "LastName":lastName, "role": "user" , "uid" : result!.user.uid]){ error in
-                        if error != nil{
+                }else{
+                    Model.instance.addUser(userId: result!.user.uid, firstName: firstName, lastName: lastName){ err in
+                        if err != nil{ //error saving user document
                             self.showError(message: "Error saving user data")
+                        }else{ //create & save user successfully
+                            //self.performSegue(withIdentifier: "homeFromRegisterSegue", sender: self)
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let home = storyboard.instantiateViewController(identifier: "HomeVC") as! UITabBarController
+                            if let win = UIApplication.shared.windows.filter{$0.isKeyWindow}.first{win.rootViewController = home}
                         }
                     }
-                    
-                    //Transition to product list
-                    self.performSegue(withIdentifier: "homeFromRegisterSegue", sender: self)
-                    //self.transitionToHome()
                 }
             }
-            
-            
         }
     }
     
-    
-    
-    
-//    func transitionToHome(){
-//    let HomeViewController =  storyboard?.instantiateViewController(identifier: Constants.StoryBoard.homeViewController) as? ProductsListViewController
-//    }
-    
-    
+
     override func viewDidLoad() {
-        hideAllErrors()
-        
-        Inputs.textFieldSetUp(txtField: firstNameText, imageName: "User")
-        Inputs.textFieldSetUp(txtField: lastNameText, imageName: "User")
-        Inputs.textFieldSetUp(txtField: emailText, imageName: "Mail")
-        Inputs.textFieldSetUp(txtField: passwordText, imageName: "Password")
-     
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
-    
+    //show error and hide spinner
     func showError(message : String){
+        spinner.isHidden = true
         errorLabel.text = message
         errorLabel.alpha = 1
     }
     
     func hideError(label: UILabel){
-        
-        label.text = "Error"
         label.alpha = 0
-        //errorLabel.text = "Error"
-        //errorLabel.alpha = 0
     }
     
     func hideAllErrors(){
@@ -123,45 +97,60 @@ class RegisterViewController: UIViewController {
         if firstNameText.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             lastNameText.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             emailText.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            passwordText.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
+            passwordText.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
                 error = "Please fill all fields"
             }
         
         //Check if first and last name are valid
         let cleanedFirstName = firstNameText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         if Validation.isValidName(cleanedFirstName) == false {
-            self.firstNameErrorLabel.text = "First name is not valid"
+            self.firstNameErrorLabel.text = "*First name is invalid"
             self.firstNameErrorLabel.alpha = 1
-            error = "Fix All Errors"
+            error = "Try again..."
         }
         
         let cleanedLastName = lastNameText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         if Validation.isValidName(cleanedLastName) == false {
-            self.lastNameErrorLabel.text = "Last name is not valid"
+            self.lastNameErrorLabel.text = "*Last name is invalid"
             self.lastNameErrorLabel.alpha = 1
-            error = "Fix All Errors"
+            error = "Try again..."
         }
         
         //Check if email is valid
         let cleanedEmail = emailText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         if Validation.isValidEmail(cleanedEmail) == false {
-            self.emailErrorLabel.text =  "Email is not valid"
+            self.emailErrorLabel.text =  "*Email is invalid"
             self.emailErrorLabel.alpha = 1
-            error = "Fix All Errors"
+            error = "Try again..."
         }
         
-        //Check if the password is secure
+        //Check if the password is secured
         let cleanedPassword = passwordText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         if Validation.isPasswordValid(cleanedPassword) == false {
-            self.passwordErrorLabel.text = "Password must have 8 characters , at least one special characters"
+            self.passwordErrorLabel.text = "*Password must have 8 characters, at least one special character"
             self.passwordErrorLabel.alpha = 1
-            error = "Fix All Errors"
+            error = "Try again..."
         }
         
         return error
     }
     
-
+    func setUpElements(){
+        self.spinner.isHidden = true
+        hideAllErrors()
+        Inputs.textFieldSetUp(txtField: firstNameText, imageName: "user")
+        Inputs.textFieldSetUp(txtField: lastNameText, imageName: "user")
+        Inputs.textFieldSetUp(txtField: emailText, imageName: "mail")
+        Inputs.textFieldSetUp(txtField: passwordText, imageName: "password")
+        Inputs.styleFilledButton(submitIcon)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpElements()
+    }
+    
+    
     /*
     // MARK: - Navigation
 

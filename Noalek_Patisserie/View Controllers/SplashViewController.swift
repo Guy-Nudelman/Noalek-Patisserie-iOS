@@ -6,54 +6,63 @@
 //
 
 import UIKit
-import Firebase
 
 class SplashViewController: UIViewController {
+    
+    //@IBOutlet weak var gifView: UIImageView! ---> TODO: gif?
+    
+    @IBOutlet weak var welcomeLabel: UILabel!
+    var welcomeMessage = "Welcome ..."
 
+    @IBOutlet weak var progressView: UIProgressView!
+    var timer = Timer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        print("helloooo")
-//        isUserLoggedIn()
-        //let seconds = 5.0
-//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)){
-//            print("5 seconds..................")
-//            self.isUserLoggedIn()
-//        }
-//        Thread.sleep(forTimeInterval: TimeInterval(seconds))
-//        print("5 seconds")
-//        isUserLoggedIn()
-        //do{
-//            sleep(3)
-//            print("3 seconds..........................")
-//            isUserLoggedIn()
-        //}
-       
+        //gifView.loadGif(name: "splashbg-t") ---> TODO: gif?
         
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)){
-            print("5 seconds..................")
+        super.viewDidAppear(animated)
+        startProgress()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)){
             self.isUserLoggedIn()
         }
     }
     
-    @objc func performAction(){
-        print("5 seconds..............................")
-        isUserLoggedIn()
+    func animateLabel(){
+        for i in welcomeMessage{
+            welcomeLabel.text! += "\(i)"
+            RunLoop.current.run(until: Date()+0.2)
+        }
+    }
+    
+    
+    func startProgress(){
+        var progress: Float = 0.0
+        progressView.progress = progress
+        timer = Timer.scheduledTimer(withTimeInterval: 0.033, repeats: true){ timer in
+            progress += 0.01
+            self.progressView.progress = progress
+        }
     }
     
     func isUserLoggedIn(){
-        let user = Auth.auth().currentUser
-        if let user = user {
-            performSegue(withIdentifier: "homeFromSplash", sender: self)
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let productsListViewController = storyboard.instantiateViewController(identifier: "ProductsListViewController") as! ProductsListViewController
-//            if let win = UIApplication.shared.windows.filter{$0.isKeyWindow}.first{win.rootViewController = productsListViewController}
-        }else{
+        let user = Model.instance.getCurrentUser()
+        if user != nil {
+            //performSegue(withIdentifier: "homeFromSplash", sender: self)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let home = storyboard.instantiateViewController(identifier: "HomeVC") as! UITabBarController
+            if let win = UIApplication.shared.windows.filter{$0.isKeyWindow}.first{win.rootViewController = home}
             
+            
+        }else{
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let authViewController = storyboard.instantiateViewController(identifier: "AuthViewController") as! AuthViewController
             if let win = UIApplication.shared.windows.filter{$0.isKeyWindow}.first{win.rootViewController = authViewController}

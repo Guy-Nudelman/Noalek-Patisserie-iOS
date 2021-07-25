@@ -7,106 +7,94 @@
 
 import UIKit
 import Kingfisher
-import FirebaseStorage
-import Firebase
 
 
-class ProductInfoViewController: UIViewController {
+protocol MyCustomCellDelegator{
+    func callSegueFromCell(myData dataobject: Any)
+}
 
-    var id: String = ""
+
+class ProductInfoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MyCustomCellDelegator {
+    
+    var id: String = "" //productId
     var isLiked: Bool = false
+    var data = [Comment]()
     var refreshControl = UIRefreshControl()
 
-    @IBOutlet weak var productInfoView: UIScrollView!
-    
+    @IBOutlet weak var commentsTableView: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
-    
     @IBOutlet weak var priceLabel: UILabel!
-    
     @IBOutlet weak var productImage: UIImageView!
+    @IBOutlet weak var likeBtnOutlet: UIButton!
+    @IBOutlet weak var likesNumber: UILabel!
+    @IBOutlet weak var isDairyIcon: UIImageView!
+    @IBOutlet weak var isGlutenFreeIcon: UIImageView!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var editProductBtnOutlet: UIBarButtonItem!
+    
+    
+    func callSegueFromCell(myData dataobject: Any) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(identifier: "NewCommentViewController") as! NewCommentViewController
+        vc.id = dataobject as! String
+        vc.productId = self.id
+        self.present(vc, animated: true, completion: nil)
+    }
+
+
+    @IBAction func addCommentButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "addComment", sender: self)
+    }
     
     @IBAction func likeBtn(_ sender: Any) {
-        let user = Auth.auth().currentUser
+        let user = Model.instance.getCurrentUser()
         if let user = user {
             let uid = user.uid
-            
-            //self.isLikedAlready()
-            
-            if self.isLiked == false{ //like action
+            if self.isLiked == false{ //like
                 Model.instance.addLike(productId: id, uid: uid){
-                    print("added like document")
                     Model.instance.updateProductLike(productId: self.id, addingLike: true){ likes in
                         self.likesNumber.text = String(likes)
                         self.isLikedAlready()
-                        print("updated number of like to the product + 1")
                     }
                 }
-                
             }else{ //deslike
                 Model.instance.deleteLike(productId: id, uid: uid){
-                    print("deleted like document")
                     Model.instance.updateProductLike(productId: self.id, addingLike: false){ likes in
                         self.likesNumber.text = String(likes)
                         self.isLikedAlready()
-                        print("updated number of like to the product - 1")
                     }
                 }
             }
         }
     }
     
-    @IBOutlet weak var likeBtnOutlet: UIButton!
-    
-    @IBOutlet weak var likesNumber: UILabel!
-    
-    @IBAction func addToCartBtn(_ sender: Any) {
-    }
-    
-    @IBOutlet weak var isDairyIcon: UIImageView!
-    
-    @IBOutlet weak var isGlutenFreeIcon: UIImageView!
-    
-    @IBOutlet weak var descriptionLabel: UILabel!
-    
-    @IBOutlet weak var editProductBtnOutlet: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadUserView()
-        
         Validation.isAdmin(){ isAdminFlag in
             if isAdminFlag == true{
                 self.loadAdminView()
             }
         }
         
-//        let user = Auth.auth().currentUser
-//        if let user = user {
-//          // The user's ID, unique to the Firebase project.
-//          // Do NOT use this value to authenticate with your backend server,
-//          // if you have one. Use getTokenWithCompletion:completion: instead.
-//          let uid = user.uid
-//            Model.instance.getRole(userId: uid) { role in
-//                if role == "admin"{
-//                    self.loadAdminView()
-//                }
-//            }
-//        }
-        
-        
-        //productInfoView.addSubview(refreshControl)
-        //refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        commentsTableView.addSubview(refreshControl)
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         reloadData()
         Model.instance.notificationProductInfo.observe {
             self.reloadData()
         }
+
         // Do any additional setup after loading the view.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? NewProductViewController {
+        if let destination = segue.destination as? NewProductViewController { //edit product
             destination.id = self.id
+        }
+        if let destination = segue.destination as? NewCommentViewController{ //new comment
+            destination.productId = self.id
         }
     }
 
@@ -115,11 +103,10 @@ class ProductInfoViewController: UIViewController {
     }
     
     func reloadData(){
-        //refreshControl.beginRefreshing()
-        Model.instance.getProduct(byId: id){ product in
+        
+        Model.instance.getProduct(byId: id){ product in 
             
             self.nameLabel.text = product.name!
-            
             self.priceLabel.text = String(product.price) + " $"
             if(product.isDairy == false){
                 self.isDairyIcon.image = UIImage(named: "unmilk")
@@ -132,40 +119,37 @@ class ProductInfoViewController: UIViewController {
             }else{
                 self.isGlutenFreeIcon.image = UIImage(named: "gluten")
             }
-            
             self.likesNumber.text = String(product.likes)
             self.isLikedAlready()
             self.descriptionLabel.text = product.desc
             let urlProduct = URL(string : product.imageUrl!)
+            let resource = ImageResource(downloadURL: urlProduct!,cacheKey: product.imageUrl!)
+            self.productImage.kf.setImage(with: resource, options: [.transition(.fade(1))])
 
-            let processor = DownsamplingImageProcessor(size:  CGSize(width: 374, height: 219))
-            self.productImage.kf.setImage(with: urlProduct, placeholder: UIImage(named: "product"), options: [ .processor(processor), .transition(.fade(1)),.cacheOriginalImage]){ result in
+            //reload Comments Table
+            self.refreshControl.beginRefreshing()
+            Model.instance.getAllComments(byProductId: product.id!){ comments in
+                self.data = comments
+                self.commentsTableView.reloadData()
+                self.refreshControl.endRefreshing()
             }
-            
-            //self.refreshControl.endRefreshing()
-            //self.productImage.contentMode = UIView.ContentMode.scaleAspectFit
         }
     }
     
     func isLikedAlready() -> Void{
-        let user = Auth.auth().currentUser
+        let user = Model.instance.getCurrentUser()
         if let user = user {
             let uid = user.uid
             Model.instance.isLiked(productId: id, uid: uid){ isLiked in
                 self.isLiked = isLiked
                 if self.isLiked == true{
-                    self.likeBtnOutlet.tintColor = .red
+                    self.likeBtnOutlet.imageView?.image = UIImage(named: "like")
+                }else{
+                    self.likeBtnOutlet.imageView?.image = UIImage(named: "dislike")
                 }
-                else{
-                    self.likeBtnOutlet.tintColor = .black
-                }
-                //is isLiked == true
-                //print("*************)$#%^&%%$@#$%^$%&^*")
             }
         }
-        //return isLiked
     }
-    
     
     func loadAdminView(){
         self.editProductBtnOutlet.isEnabled = true
@@ -177,14 +161,41 @@ class ProductInfoViewController: UIViewController {
         self.editProductBtnOutlet.tintColor = UIColor.clear
     }
     
-//    func reloadData(){
-//        refreshControl.beginRefreshing()
-//        Model.instance.getAllProducts{products in
-//            self.data = products
-//            self.productsTableview.reloadData()
-//            self.refreshControl.endRefreshing()
-//        }
-//    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = commentsTableView.dequeueReusableCell(withIdentifier: "myCommentRow", for: indexPath) as! CommentsTableViewCell
+        let comment = data[indexPath.row]
+        cell.contentView.backgroundColor = UIColor.clear
+        cell.deleteCommentIcon.tintColor = .link
+        cell.delegate = self
+        cell.id = comment.id!
+        cell.userNameLabel.text = comment.userName
+        cell.commentLabel.text = comment.desc
+
+        let user = Model.instance.getCurrentUser()
+        if let user = user {
+            if user.uid == comment.userId{
+                cell.enableCommentButtons()
+            }else{
+                cell.disableCommentButtons()
+            }
+        }
+        
+        return cell
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 148
+    }
+        
     
     /*
     // MARK: - Navigation
@@ -196,5 +207,5 @@ class ProductInfoViewController: UIViewController {
     }
     */
 
-    }
+}
 

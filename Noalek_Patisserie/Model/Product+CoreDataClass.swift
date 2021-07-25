@@ -14,8 +14,6 @@ import Foundation
 @objc(Product)
 public class Product: NSManagedObject {
 
- 
-    
     static func create(id:String, name:String, imageUrl:String, price:Double, isDairy:Bool, isGlutenFree:Bool, desc:String,lastUpdated:Int64 = 0, likes: Int16 = 0)->Product{
         let context=(UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let product = Product(context: context)
@@ -29,8 +27,9 @@ public class Product: NSManagedObject {
         product.desc = desc
         product.lastUpdated = lastUpdated
         product.isRemoved = false
+        
         return product
-        }
+    }
     
     static func create(json:[String:Any])->Product?{
         let context=(UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -48,6 +47,7 @@ public class Product: NSManagedObject {
             product.lastUpdated = lup.seconds
         }
         product.isRemoved = json["isRemoved"] as? Bool ?? false
+        
         return product
     }
     
@@ -61,7 +61,6 @@ public class Product: NSManagedObject {
         json["name"] = name!
         if let imageUrl = imageUrl{
             json["imageUrl"] = imageUrl
-        
         }else{
             json["imageUrl"] = ""
         }
@@ -72,51 +71,54 @@ public class Product: NSManagedObject {
         json["desc"] = desc
         json["lastUpdated"] = FieldValue.serverTimestamp()
         json["isRemoved"] = isRemoved
+        
         return json
     }
     
     static func saveLastUpdate(time:Int64){
-            UserDefaults.standard.set(time, forKey: "lastUpdate")
-        }
-        static func getLastUpdate()->Int64{
-            return Int64(UserDefaults.standard.integer(forKey: "lastUpdate"))
-        }
+        UserDefaults.standard.set(time, forKey: "lastUpdate")
+    }
+    
+    static func getLastUpdate()->Int64{
+        return Int64(UserDefaults.standard.integer(forKey: "lastUpdate"))
+    }
     
 }
 
 
 extension Product{
 
-
-    
      static func getAll(callback:@escaping ([Product])->Void){
         let context=(UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         let request = Product.fetchRequest() as NSFetchRequest<Product>
         request.predicate = NSPredicate(format: "isRemoved != true")
         
+        let likesSortDescriptor = NSSortDescriptor(key: "likes", ascending: false)
+        let lastUpdatedSortDescriptor = NSSortDescriptor(key: "lastUpdated", ascending: false)
+        
+        request.sortDescriptors = [likesSortDescriptor, lastUpdatedSortDescriptor]
+        //request.sortDescriptors = [NSSortDescriptor(key: "likes", ascending: false)]
+        
         DispatchQueue.global().async {
             var data = [Product]()
             do{
                 data = try context.fetch(request)
             }catch{
-                
             }
             DispatchQueue.main.async {
                 callback(data)
             }
         }
     }
+    
     func save(){
         let context=(UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         do{
             try context.save()
-            
         }catch{
-            
         }
-        
     }
     
     func addProductToLocalDb(){
@@ -130,24 +132,22 @@ extension Product{
         do{
             try context.save()
         }catch{
-            
         }
-        
     }
     
     static func getProduct(byId:String)->Product?{
         let context=(UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         let request = Product.fetchRequest() as NSFetchRequest<Product>
-        request.predicate = NSPredicate(format: "id == \(byId)")
+        request.predicate = NSPredicate(format: "id == %@","\(byId)")
         do{
             let products = try context.fetch(request)
             if(products.count>0){
                 return products[0]
             }
         }catch{
-            
         }
+        
         return nil
     }
     
@@ -163,7 +163,6 @@ extension Product{
         }catch let error as NSError{
             //TODO: handle error
         }
-        
     }
     
 }

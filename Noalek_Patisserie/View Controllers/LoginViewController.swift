@@ -6,34 +6,37 @@
 //
 
 import UIKit
-import Firebase
 
 class LoginViewController: UIViewController {
 
-    
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
-
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var submitIcon: UIButton!
+    
+    
+    @IBAction func onScreenTap(_ sender: Any) {
+        self.view.endEditing(true)
+    }
+    
     @IBAction func submitBtn(_ sender: Any) {
         hideError(label: errorLabel)
-        //Validate Text Fields
+        self.spinner.isHidden = false
+        self.spinner.startAnimating()
         
-        
-        
-        //Create cleaned versions of text fields
+        //Create clean versions of text fields
         let email = emailText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let password = passwordText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        
-        
-        
-        //Sigining the user
-        Auth.auth().signIn(withEmail: email, password: password) {(result,error) in
+        Model.instance.signIn(email: email, password: password) { (result, error) in
             if error != nil{
                 self.showError(message: error!.localizedDescription)
             }else {
-                self.performSegue(withIdentifier: "homeFromLoginSegue", sender: self)
+                //self.performSegue(withIdentifier: "homeFromLoginSegue", sender: self)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let home = storyboard.instantiateViewController(identifier: "HomeVC") as! UITabBarController
+                if let win = UIApplication.shared.windows.filter{$0.isKeyWindow}.first{win.rootViewController = home}
             }
         }
     }
@@ -41,37 +44,34 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        hideError(label: errorLabel)
-        
-        Inputs.textFieldSetUp(txtField: emailText, imageName: "Mail")
-        Inputs.textFieldSetUp(txtField: passwordText, imageName: "Password")
         
         // Do any additional setup after loading the view.
     }
     
     
     func showError(message : String){
+        self.spinner.isHidden = true
         errorLabel.text = message
         errorLabel.alpha = 1
     }
     
     func hideError(label: UILabel){
-        
-        label.text = "Error"
         label.alpha = 0
-        //errorLabel.text = "Error"
-        //errorLabel.alpha = 0
     }
-//
-//    func hideAllErrors(){
-//        hideError(label: firstNameErrorLabel)
-//        hideError(label: lastNameErrorLabel)
-//        hideError(label: emailErrorLabel)
-//        hideError(label: passwordErrorLabel)
-//        hideError(label: errorLabel)
-//    }
     
+    func setUpElements(){
+        self.spinner.isHidden = true
+        hideError(label: errorLabel)
+        Inputs.textFieldSetUp(txtField: emailText, imageName: "mail")
+        Inputs.textFieldSetUp(txtField: passwordText, imageName: "password")
+        Inputs.styleHollowButton(submitIcon)
+    }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpElements()
+    }
+
 
     /*
     // MARK: - Navigation
