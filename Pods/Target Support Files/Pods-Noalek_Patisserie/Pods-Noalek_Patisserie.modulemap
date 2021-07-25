@@ -1,0 +1,6 @@
+framework module Pods_Noalek_Patisserie {
+  umbrella header "Pods-Noalek_Patisserie-umbrella.h"
+
+  export *
+  module * { export * }
+}

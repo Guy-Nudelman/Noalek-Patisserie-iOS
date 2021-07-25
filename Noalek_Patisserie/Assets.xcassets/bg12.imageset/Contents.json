@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "vertical-pastel-pink-background-retro-border-88313429.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "vertical-pastel-pink-background-retro-border-88313430.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "vertical-pastel-pink-background-retro-border-88313431.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
