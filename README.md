@@ -3,7 +3,7 @@
 <br />
 <p align="center">
     <a href="https://github.com/Guy-Nudelman/Noalek-Patisserie-iOS">
-      <img src="images/logo.svg" alt="Logo" width="300" heigt="300">
+      <img src="images/logo.svg" alt="Logo" width="400" heigt="400">
   </a>
  </p>
  <p align="center">
