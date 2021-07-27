@@ -16,18 +16,16 @@ Thanks ❤</br></br>
 This is a project for our iOS Application course conducted by Dr. Eliav Menachi.</br>
 
 ## App Functionality
-<ol>
-	<li>Implementation of Users Identification and Users Registeration
-	- Authentication and Validation inputs of the users when entering the app.</ul>
-	- Future Logins to the app after registeration to the app will auto log in the user.</ul>
-	</li>
-	<li>Umplementation of Firebase Database Architecture
-	- Data served bt the app is handled by a RepositoryDataBase the implements Firebase.</ul>
-	- Local data is saved in a singleton.</ul>
-	</li>
-	<li>Implementation of Posts that can be edited only by admins.</li>
-	<li>Implamantation of Users Comments and Likes that can be edited only by the owner.</li>
-</ol>
+
+1. Implementation of Users Identification and Users Registeration
+- Authentication and Validation inputs of the users when entering the app.
+- Future Logins to the app after registeration to the app will auto log in the user.
+2. Umplementation of Firebase Database Architecture
+- Data served bt the app is handled by a RepositoryDataBase the implements Firebase.
+- Local data is saved in a singleton.
+3. Implementation of Posts that can be edited only by admins.
+4. Implamantation of Users Comments and Likes that can be edited only by the owner.
+
 
 ## Getting Started...
 
@@ -49,4 +47,3 @@ This is a project for our iOS Application course conducted by Dr. Eliav Menachi.
 ## Developed by:
 * [**Guy Nudelman**](https://www.linkedin.com/in/guynudelman/)
 * [**Noa Cohen**](https://www.linkedin.com/in/noalecohen1/)
-
