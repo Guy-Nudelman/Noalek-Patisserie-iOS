@@ -5,13 +5,15 @@
     <a href="https://github.com/Guy-Nudelman/Noalek-Patisserie-iOS">
       <img src="images/logo.svg" alt="Logo" width="300" heigt="300">
   </a>
- </p>
-
+	
 This app is one place for all cakes and cookies made by Noalek Patisserie.</br>
 Customers can be impressed by the delicious desserts, leave a comment and give a like.</br>
 We plan to expand our functionality and thus support the shopping bag and payment system.</br>
 Feel free to contact us for any future idea or feedback.</br>
 Thanks ❤</br>
+ </p>
+
+
 
 This is a project for our iOS Application course conducted by Dr. Eliav Menachi.</br>
 
