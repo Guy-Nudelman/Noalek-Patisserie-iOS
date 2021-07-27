@@ -34,15 +34,15 @@ This is a project for our iOS Application course conducted by Dr. Eliav Menachi.
 - Build and run the application on iOS emulator
 
 #### Register Page 
-	<img src="images/register.png" widt="200" height="400">
+	<img src="images/register.png" width="200" height="400">
 #### Login Page
-	<img src="images/login.png" widt="200" height="400">
+	<img src="images/login.png" width="200" height="400">
 #### Main Feed
-	<img src="images/home.png" widt="200" height="400">
+	<img src="images/home.png" width="200" height="400">
 #### Add New Product
-	<img src="images/add.png" widt="200" height="400">
+	<img src="images/add.png" width="200" height="400">
 #### Product Details
-	<img src="images/info.png" widt="200" height="400">
+	<img src="images/info.png" width="200" height="400">
 	
 ## Developed by:
 * [**Guy Nudelman**](https://www.linkedin.com/in/guynudelman/)
