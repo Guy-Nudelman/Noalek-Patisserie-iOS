@@ -1,7 +1,7 @@
 # Noalek Patisserie MENU - iOS Application 🍰
 
 <br />
-<p>
+<p align="center">
     <a href="https://github.com/Guy-Nudelman/Noalek-Patisserie-iOS">
       <img src="images/logo.svg" alt="Logo" width="300" heigt="300">
   </a>
