@@ -35,4 +35,4 @@ Thanks ❤</br>
 
 ## Developed by:
 * [**Guy Nudelman**](https://www.linkedin.com/in/guynudelman/)
-* [**Noa Cohen**] (https://www.linkedin.com/in/noalecohen1/)
+* [**Noa Cohen**](https://www.linkedin.com/in/noalecohen1/)
