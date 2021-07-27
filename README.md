@@ -11,12 +11,13 @@
 Customers can be impressed by the delicious desserts, leave a comment and give a like.</br>
 We plan to expand our functionality and thus support the shopping bag and payment system.</br>
 Feel free to contact us for any future idea or feedback.</br>
-Thanks ❤</br>
+Thanks ❤</br></br>
+This is a project for our iOS Application course conducted by Dr. Eliav Menachi.</br>
 </p>
 
 
 
-This is a project for our iOS Application course conducted by Dr. Eliav Menachi.</br>
+
 
 ## App Functionality
 
