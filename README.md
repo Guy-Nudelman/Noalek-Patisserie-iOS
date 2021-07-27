@@ -19,10 +19,10 @@ This is a project for our iOS Application course conducted by Dr. Eliav Menachi.
 
 1. Implementation of Users Identification and Users Registeration
 	- Authentication and Validation inputs of the users when entering the app.
-- Future Logins to the app after registeration to the app will auto log in the user.
+	- Future Logins to the app after registeration to the app will auto log in the user.
 2. Umplementation of Firebase Database Architecture
-- Data served bt the app is handled by a RepositoryDataBase the implements Firebase.
-- Local data is saved in a singleton.
+	- Data served bt the app is handled by a RepositoryDataBase the implements Firebase.
+	- Local data is saved in a singleton.
 3. Implementation of Posts that can be edited only by admins.
 4. Implamantation of Users Comments and Likes that can be edited only by the owner.
 
