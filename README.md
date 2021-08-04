@@ -10,9 +10,8 @@
 	This app is one place for all cakes and cookies made by Noalek Patisserie.</br>
 Customers can be impressed by the delicious desserts, leave a comment and give a like.</br>
 We plan to expand our functionality and thus support the shopping bag and payment system.</br>
-Feel free to contact us for any future idea or feedback.</br>
+Feel free to contact us for any future idea or feedback.</br></br>
 Thanks ❤</br></br>
-This is a project for our iOS Application course conducted by Dr. Eliav Menachi.</br>
 </p>
 
 
@@ -22,10 +21,10 @@ This is a project for our iOS Application course conducted by Dr. Eliav Menachi.
 ## App Functionality
 
 1. Implementation of Users Identification and Users Registeration
-	- Authentication and Validation inputs of the users when entering the app.
-	- Future Logins to the app after registeration to the app will auto log in the user.
-2. Umplementation of Firebase Database Architecture
-	- Data served bt the app is handled by a RepositoryDataBase the implements Firebase.
+	- Authentication and validation inputs of the users when entering the app.
+	- Future logins to the app after registeration to the app will auto log in the user.
+2. Implementation of Firebase Database Architecture
+	- Data served by the app is handled by a RepositoryDataBase that implements Firebase.
 	- Local data is saved in a singleton.
 3. Implementation of Posts that can be edited only by admins.
 4. Implamantation of Users Comments and Likes that can be edited only by the owner.
