@@ -40,6 +40,10 @@ Login page            |  Signup page
 :-------------------------:|:-------------------------:
 ![](images/login.png)  |  ![](images/register.png)
 
+Main Feed            |  Product Details |  New Product
+:-------------------------:|:-------------------------: |:-------------------------:
+![](images/home.png)  |  ![](images/info.png) |  ![](images/add.png)
+
 
 #### Register Page
 <img src="images/register.png" alt="register" width="200" height="400">
