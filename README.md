@@ -36,6 +36,11 @@ Thanks ❤</br></br>
 - Export git repository to Xcode
 - Build and run the application on iOS emulator
 
+Login page            |  Signup page
+:-------------------------:|:-------------------------:
+![](images/login.png)  |  ![](images/register.png)
+
+
 #### Register Page
 <img src="images/register.png" alt="register" width="200" height="400">
 
