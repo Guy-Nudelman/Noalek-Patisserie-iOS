@@ -36,16 +36,16 @@ Thanks ❤</br></br>
 - Export git repository to Xcode
 - Build and run the application on iOS emulator
 
-#### Register Page 
-	<img src="images/register.png" alt="register" width="200" height="400">
+#### Register Page
+<img src="images/register.png" alt="register" width="200" height="400">
 #### Login Page
-	<img src="images/login.png" alt="login" width="200" height="400">
+<img src="images/login.png" alt="login" width="200" height="400">
 #### Main Feed
-	<img src="images/home.png" alt="home" width="200" height="400">
+<img src="images/home.png" alt="home" width="200" height="400">
 #### Add New Product
-	<img src="images/add.png" alt="add" width="200" height="400">
+<img src="images/add.png" alt="add" width="200" height="400">
 #### Product Details
-	<img src="images/info.png" alt="info" width="200" height="400">
+<img src="images/info.png" alt="info" width="200" height="400">
 	
 ## Developed by:
 * [**Guy Nudelman**](https://www.linkedin.com/in/guynudelman/)
