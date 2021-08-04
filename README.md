@@ -36,9 +36,9 @@ Thanks ❤</br></br>
 - Export git repository to Xcode
 - Build and run the application on iOS emulator
 
-Login page            |  Signup page
-:-------------------------:|:-------------------------:
-![](images/login.png)  |  ![](images/register.png)
+Loading Page            | Login page            |  Signup page
+:-------------------------:|:-------------------------:|:-------------------------:
+![](images/splash.png)  | ![](images/login.png)  |  ![](images/register.png)
 
 Main Feed            |  Product Details |  New Product
 :-------------------------:|:-------------------------: |:-------------------------:
