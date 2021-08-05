@@ -38,11 +38,11 @@ Thanks ❤</br></br>
 
 Loading Page            | Login Page            |  Sign-Up Page
 :-------------------------:|:-------------------------:|:-------------------------:
-![](images/splash.png)  | ![](images/login.png)  |  <img src="images/register.png" alt="register" width="300">
+<img src="images/splash.png" alt="register" width="300">  | <img src="images/login.png" alt="register" width="300">  |  <img src="images/register.png" alt="register" width="300">
 
 Main Feed            |  Product Details |  New Product
 :-------------------------:|:-------------------------: |:-------------------------:
-![](images/home.png)  |  ![](images/info.png) |  ![](images/add.png)
+<img src="images/home.png" alt="register" width="300">  |  <img src="images/info.png" alt="register" width="300"> |  <img src="images/add.png" alt="register" width="300">
 
 	
 ## Developed by:
