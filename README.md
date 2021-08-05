@@ -38,7 +38,7 @@ Thanks ❤</br></br>
 
 Loading Page            | Login Page            |  Sign-Up Page
 :-------------------------:|:-------------------------:|:-------------------------:
-<img src="images/splash.png" alt="register" width="300">  | <img src="images/login.png" alt="register" width="280">  |  <img src="images/register.png" alt="register" width="300">
+<img src="images/splash.png" alt="register" width="300">  | <img src="images/login.png" alt="register" width="290">  |  <img src="images/register.png" alt="register" width="300">
 
 Main Feed            |  Product Details |  New Product
 :-------------------------:|:-------------------------: |:-------------------------:
