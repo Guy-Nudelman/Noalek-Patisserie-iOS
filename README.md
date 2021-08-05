@@ -42,7 +42,7 @@ Loading Page            | Login Page            |  Sign-Up Page
 
 Main Feed            |  Product Details |  New Product
 :-------------------------:|:-------------------------: |:-------------------------:
-<img src="images/home.png" alt="register" width="300">  |  <img src="images/info.png" alt="register" width="300"> |  <img src="images/add.png" alt="register" width="315">
+<img src="images/home.png" alt="register" width="300">  |  <img src="images/info.png" alt="register" width="300"> |  <img src="images/add.png" alt="register" width="310">
 
 	
 ## Developed by:
